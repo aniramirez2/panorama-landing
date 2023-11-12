@@ -11,6 +11,10 @@ import {
   Flex,
   useBreakpointValue,
   IconButton,
+  useColorModeValue,
+  Center,
+  Avatar,
+  Badge,
 } from '@chakra-ui/react';
 import { CheckIcon } from '@chakra-ui/icons'
 import { useState } from 'react';
@@ -57,22 +61,32 @@ function App() {
 
   const cards = [
     {
-      title: 'Design Projects 1',
-      text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+      title: 'ARTBO',
+      text: "",
       image:
-        'https://images.unsplash.com/photo-1516796181074-bf453fbfa3e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+        'https://res.cloudinary.com/dinkekjhz/image/upload/v1699829832/artbo_udx9x5.jpg',
+      color: 'black'
     },
     {
-      title: 'Design Projects 2',
-      text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+      title: 'Galerias',
+      text: "",
       image:
-        'https://images.unsplash.com/photo-1438183972690-6d4658e3290e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2274&q=80',
+        'https://res.cloudinary.com/dinkekjhz/image/upload/v1699829832/galerias_qufdc1.jpg',
+      color: 'black'
     },
     {
-      title: 'Design Projects 3',
-      text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+      title: 'Teatros',
+      text: "",
       image:
-        'https://images.unsplash.com/photo-1507237998874-b4d52d1dd655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+        'https://res.cloudinary.com/dinkekjhz/image/upload/v1699829832/teatros_urrk1k.jpg',
+      color: 'white'
+    },
+    {
+      title: 'Museos',
+      text: "",
+      image:
+        'https://res.cloudinary.com/dinkekjhz/image/upload/v1699829833/museos_svmxep.jpg',
+      color: 'white'
     },
   ]
 
@@ -228,9 +242,9 @@ function App() {
             key={index}
             height={'6xl'}
             position="relative"
-            backgroundPosition="center"
+            backgroundPosition="start"
             backgroundRepeat="no-repeat"
-            backgroundSize="cover"
+            backgroundSize="contain"
             backgroundImage={`url(${card.image})`}>
             {/* This is the block you need to change, to customize the caption */}
             <Container size="container.lg" height="600px" position="relative">
@@ -241,7 +255,7 @@ function App() {
                 position="absolute"
                 top="50%"
                 transform="translate(0, -50%)">
-                <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
+                <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }} color={card.color}>
                   {card.title}
                 </Heading>
                 <Text fontSize={{ base: 'md', lg: 'lg' }} color="GrayText">
@@ -252,7 +266,194 @@ function App() {
           </Box>
         ))}
       </Slider>
-    </Box>
+      </Box>
+      <Center py={6}>
+        <Box
+          maxW={'320px'}
+          w={'full'}
+          bg={useColorModeValue('white', 'gray.900')}
+          boxShadow={'2xl'}
+          rounded={'lg'}
+          p={6}
+          textAlign={'center'}>
+          <Avatar
+            size={'xl'}
+            src={
+              'https://images.unsplash.com/photo-1520810627419-35e362c5dc07?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ'
+            }
+            mb={4}
+            pos={'relative'}
+            _after={{
+              content: '""',
+              w: 4,
+              h: 4,
+              bg: 'green.300',
+              border: '2px solid white',
+              rounded: 'full',
+              pos: 'absolute',
+              bottom: 0,
+              right: 3,
+            }}
+          />
+          <Heading fontSize={'2xl'} fontFamily={'body'}>
+            Panorama
+          </Heading>
+          <Text fontWeight={600} color={'gray.500'} mb={4}>
+            @panorama_col
+          </Text>
+          <Text
+            textAlign={'center'}
+            color={useColorModeValue('gray.700', 'gray.400')}
+            px={3}>
+            Hola
+            ¿Quiere saber qué hay para hacer en Chapinero, Bogotá?
+            ¡Aquí tenemos la respuesta!
+            Entérese de todo el Panorama cultural en la zona 🇨🇴
+          </Text>
+
+          <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
+            <Badge
+              px={2}
+              py={1}
+              bg={useColorModeValue('gray.50', 'gray.800')}
+              fontWeight={'400'}>
+              #arte
+            </Badge>
+            <Badge
+              px={2}
+              py={1}
+              bg={useColorModeValue('gray.50', 'gray.800')}
+              fontWeight={'400'}>
+              #galerias
+            </Badge>
+            <Badge
+              px={2}
+              py={1}
+              bg={useColorModeValue('gray.50', 'gray.800')}
+              fontWeight={'400'}>
+              #teatros
+            </Badge>
+          </Stack>
+
+          <Stack mt={8} direction={'row'} spacing={4}>
+            <Button
+              flex={1}
+              onClick={window.open("https://www.instagram.com/direct/t/17843635160924383")}
+              fontSize={'sm'}
+              rounded={'full'}
+              _focus={{
+                bg: 'gray.200',
+              }}>
+              Mensaje
+            </Button>
+            <Button
+              flex={1}
+              fontSize={'sm'}
+              rounded={'full'}
+              bg={'blue.400'}
+              color={'white'}
+              onClick={window.open("https://www.instagram.com/panorama_col/")}
+              boxShadow={
+                '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+              }
+              _hover={{
+                bg: 'blue.500',
+              }}
+              _focus={{
+                bg: 'blue.500',
+              }}>
+              Seguir
+            </Button>
+          </Stack>
+        </Box>
+      </Center>      
+      <Flex
+        align={'center'}
+        justify={'center'}
+        py={8}>
+        <Container>
+          <Heading
+            as={'h2'}
+            fontSize={{ base: 'xl', sm: '2xl' }}
+            textAlign={'center'}
+            mb={5}>
+            Suscribete para recibir las mejores recomendaciones: 
+          </Heading>
+          <Stack
+            direction={{ base: 'column', md: 'row' }}
+            as={'form'}
+            spacing={'12px'}
+            onSubmit={(e) => {
+              e.preventDefault()
+              setError(false)
+              setState('submitting')
+
+              // remove this code and implement your submit logic right here
+              setTimeout(() => {
+                if (email === 'fail@example.com') {
+                  setError(true)
+                  setState('initial')
+                  return
+                }
+
+                setState('success')
+              }, 1000)
+            }}>
+            <FormControl>
+              <Input
+                variant={'solid'}
+                borderWidth={1}
+                color={'gray.800'}
+                _placeholder={{
+                  color: 'gray.400',
+                }}
+                borderColor={'gray.300'}
+                id={'email'}
+                type={'email'}
+                required
+                placeholder={' Email'}
+                aria-label={' Email'}
+                value={email}
+                disabled={state !== 'initial'}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </FormControl>
+            <FormControl>
+              <Input
+                variant={'solid'}
+                borderWidth={1}
+                color={'gray.800'}
+                _placeholder={{
+                  color: 'gray.400',
+                }}
+                borderColor={'gray.300'}
+                id={'whatsapp'}
+                type={'text'}
+                required
+                placeholder={'Whatsapp'}
+                aria-label={'Whatsapp'}
+                value={whatsapp}
+                disabled={state !== 'initial'}
+                onChange={(e) => setWhatsapp(e.target.value)}
+              />
+            </FormControl>
+            <FormControl w={{ base: '100%', md: '40%' }}>
+              <Button
+                colorScheme={state === 'success' ? 'green' : 'blue'}
+                isLoading={state === 'submitting'}
+                w="100%"
+                type={state === 'success' ? 'button' : 'Enviar'}>
+                {state === 'success' ? <CheckIcon /> : 'Enviar'}
+              </Button>
+            </FormControl>
+          </Stack>
+          <Text mt={2} textAlign={'center'} color={error ? 'red.500' : 'gray.500'}>
+            {error
+              ? 'Oh no an error occured! 😢 Please try again later.'
+              : "No te vas a arrepentir! ✌️"}
+          </Text>
+        </Container>
+      </Flex>
     </>
   )
 }
