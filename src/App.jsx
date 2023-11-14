@@ -21,6 +21,9 @@ import { useState } from 'react';
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 // And react-slick as our Carousel Lib
 import Slider from 'react-slick'
+import logo from './assets/LOGO.png'
+import { db } from '../firebase.config';
+import { collection, addDoc } from "firebase/firestore"; 
 
 const settings = {
   dots: true,
@@ -29,7 +32,7 @@ const settings = {
   infinite: true,
   autoplay: true,
   speed: 500,
-  autoplaySpeed: 5000,
+  autoplaySpeed: 2000,
   slidesToShow: 1,
   slidesToScroll: 1,
 }
@@ -54,8 +57,6 @@ function App() {
   const [error, setError] = useState(false)
   const [slider, setSlider] = useState(null)
 
-  // These are the breakpoints which changes the position of the
-  // buttons as the screen size changes
   const top = useBreakpointValue({ base: '90%', md: '50%' })
   const side = useBreakpointValue({ base: '30%', md: '40px' })
 
@@ -90,6 +91,20 @@ function App() {
     },
   ]
 
+  const handleSendForm = async() => {
+    setState("submitting")
+    try {
+      const docRef = await addDoc(collection(db, "users"), {
+        email,
+        whatsapp,
+      });
+      setState("success")
+    } catch (e) {
+      setError("Error adding document")
+      console.error("Error adding document: ", e);
+    }
+  }
+
   return (
     <>
       <Container maxW={'3xl'}>
@@ -106,10 +121,10 @@ function App() {
             <Text as={'span'} color={'yellow.400'} ml={3}>
                PANORAMA 
             </Text>
-             <br/> de eventos culturales en bogotá
+             <br/> de eventos en Bogotá
           </Heading>
           <Text color={'gray.500'}  marginTop="-30px" marginBottom="30px">
-            Sé el Primero en Saber qué hacer: ¡Únete Hoy a Nuestra Comunidad de Eventos!.
+            Se el Primero en Saber qué hacer: ¡Únete Hoy a Nuestra Comunidad de Eventos!.
           </Text>
         </Stack>
         <Flex
@@ -130,18 +145,7 @@ function App() {
               onSubmit={(e) => {
                 e.preventDefault()
                 setError(false)
-                setState('submitting')
-
-                // remove this code and implement your submit logic right here
-                setTimeout(() => {
-                  if (email === 'fail@example.com') {
-                    setError(true)
-                    setState('initial')
-                    return
-                  }
-
-                  setState('success')
-                }, 1000)
+                handleSendForm()
               }}>
               <FormControl>
                 <Input
@@ -267,6 +271,17 @@ function App() {
         ))}
       </Slider>
       </Box>
+      
+      <Box w="50%" pt="50px" textAlign="center" margin="auto">
+        <Heading
+          as={'h2'}
+          fontSize={{ base: 'xl', sm: '2xl' }}
+          textAlign={'center'}
+          mb={5}>
+          Siguenos en Instagram y conoce el Panorama de eventos en Bogotá: 
+        </Heading>
+      </Box>
+      <br/>
       <Center py={6}>
         <Box
           maxW={'320px'}
@@ -278,9 +293,7 @@ function App() {
           textAlign={'center'}>
           <Avatar
             size={'xl'}
-            src={
-              'https://images.unsplash.com/photo-1520810627419-35e362c5dc07?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ'
-            }
+            src={logo}
             mb={4}
             pos={'relative'}
             _after={{
@@ -338,21 +351,23 @@ function App() {
           <Stack mt={8} direction={'row'} spacing={4}>
             <Button
               flex={1}
-              onClick={window.open("https://www.instagram.com/direct/t/17843635160924383")}
+              onClick={() => window.open("https://www.instagram.com/direct/t/17843635160924383")}
               fontSize={'sm'}
               rounded={'full'}
               _focus={{
                 bg: 'gray.200',
-              }}>
+              }}
+              type="button">
               Mensaje
             </Button>
             <Button
+              type='button'
               flex={1}
               fontSize={'sm'}
               rounded={'full'}
               bg={'blue.400'}
               color={'white'}
-              onClick={window.open("https://www.instagram.com/panorama_col/")}
+              onClick={() => window.open("https://www.instagram.com/panorama_col/")}
               boxShadow={
                 '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
               }
@@ -386,18 +401,7 @@ function App() {
             onSubmit={(e) => {
               e.preventDefault()
               setError(false)
-              setState('submitting')
-
-              // remove this code and implement your submit logic right here
-              setTimeout(() => {
-                if (email === 'fail@example.com') {
-                  setError(true)
-                  setState('initial')
-                  return
-                }
-
-                setState('success')
-              }, 1000)
+              handleSendForm()
             }}>
             <FormControl>
               <Input
