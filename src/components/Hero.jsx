@@ -52,13 +52,13 @@ function Hero({hideIntro}) {
             fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
             lineHeight={'100%'}>
             Descubre el 
-            <Text as={'span'} color={'yellow'} ml={3} fontWeight={800}>
+            <Text as={'span'} color={'yellow'} ml={3} fontWeight={1000}>
                PANORAMA 
             </Text>
              <br/> de eventos en Bogotá
           </Heading>
           <Text color={'gray.500'}  marginTop="-30px" marginBottom="30px">
-            Sé el primero en saber qué hacer: ¡Únete hoy a nuestra comunidad de eventos!.
+            Sé la primera persona en saber qué hacer: ¡Únete hoy a nuestra comunidad de eventos!.
           </Text>
         </Stack>
         <Flex
