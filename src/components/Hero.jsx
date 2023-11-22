@@ -43,9 +43,9 @@ function Hero({hideIntro}) {
           as={Box}
           textAlign={'center'}
           spacing={{ base: 8, md: 14 }}
-          paddingTop={12}>
+          paddingY={12}>
           <Heading
-            fontWeight={600}
+            fontWeight={700}
             fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
             lineHeight={'100%'}>
             Descubre el 
@@ -60,7 +60,8 @@ function Hero({hideIntro}) {
         </Stack>
         <Flex
           align={'center'}
-          justify={'center'}>
+          justify={'center'}
+          paddingY={12}>
           <Container>
             <Heading
               as={'h2'}

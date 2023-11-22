@@ -21,7 +21,7 @@ const Card = ({ heading, description, icon }) => {
       borderRadius="lg"
       overflow="hidden"
       p={5}>
-      <Stack align={'start'} spacing={2}>
+      <Stack align={'center'} spacing={2}>
         <Flex
           w={16}
           h={16}
@@ -32,7 +32,7 @@ const Card = ({ heading, description, icon }) => {
           bg={useColorModeValue('yellow.500', 'yellow.700')}>
           {icon}
         </Flex>
-        <Box mt={2}>
+        <Box mt={2} textAlign={"center"}>
           <Heading size="md">{heading}</Heading>
           <Text mt={1} fontSize={'sm'}>
             {description}
@@ -45,9 +45,9 @@ const Card = ({ heading, description, icon }) => {
 
 export default function Features() {
   return (
-    <Box p={4}>
+    <Box p={4} paddingY={12}>
       <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>
-        <Heading fontSize={{ base: '2xl', sm: '4xl' }} fontWeight={500}>
+        <Heading fontSize={{ base: '2xl', sm: '4xl' }} fontWeight={700}>
           Conoce la oferta cultural en Bogotá
         </Heading>
       </Stack>
