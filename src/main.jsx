@@ -9,6 +9,10 @@ const theme = extendTheme({
     heading: `'Libre Franklin', sans-serif`,
     body: `'Libre Franklin', sans-serif`,
   },
+  colors: {
+    yellow: "#f1c230ff",
+    gray: "#b7b7b7"
+  }
 })
 
 ReactDOM.createRoot(document.getElementById('root')).render(

@@ -8,15 +8,18 @@ import {
   Input,
   Button,
   Flex,
+  Select,
 } from '@chakra-ui/react';
 import { CheckIcon } from '@chakra-ui/icons'
 import { useState } from 'react';
 import { db } from '../../firebase.config';
 import { collection, addDoc } from "firebase/firestore";
+import { countryCodes } from '../countries';
 
 function Hero({hideIntro}) {
   const [email, setEmail] = useState('')
   const [whatsapp, setWhatsapp] = useState('')
+  const [country, setCountry] = useState('+57')
   const [state, setState] = useState('initial')
   const [error, setError] = useState(false)
 
@@ -26,7 +29,7 @@ function Hero({hideIntro}) {
     try {
       const docRef = await addDoc(collection(db, "users"), {
         email,
-        whatsapp,
+        whatsapp: `${country} ${whatsapp}`,
       });
       setState("success")
     } catch (e) {
@@ -49,13 +52,13 @@ function Hero({hideIntro}) {
             fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
             lineHeight={'100%'}>
             Descubre el 
-            <Text as={'span'} color={'yellow.400'} ml={3}>
+            <Text as={'span'} color={'yellow'} ml={3} fontWeight={800}>
                PANORAMA 
             </Text>
              <br/> de eventos en Bogotá
           </Heading>
           <Text color={'gray.500'}  marginTop="-30px" marginBottom="30px">
-            Sé el Primero en Saber qué hacer: ¡Únete Hoy a Nuestra Comunidad de Eventos!.
+            Sé el primero en saber qué hacer: ¡Únete hoy a nuestra comunidad de eventos!.
           </Text>
         </Stack>
         <Flex
@@ -99,6 +102,15 @@ function Hero({hideIntro}) {
                 />
               </FormControl>
               <FormControl>
+                <Select  value={country} onChange={(e) => setCountry(e.target.value)}>
+                  {countryCodes.map((country) => (
+                    <option key={country.code} value={country.code}>
+                      {country.name} ({country.code})
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
+              <FormControl>
                 <Input
                   variant={'solid'}
                   borderWidth={1}
@@ -119,7 +131,9 @@ function Hero({hideIntro}) {
               </FormControl>
               <FormControl w={{ base: '100%', md: '40%' }}>
                 <Button
-                  colorScheme={state === 'success' ? 'green' : 'blue'}
+                  backgroundColor={"gray"}
+                  color={"white"}
+                  colorScheme={state === 'success' ? 'green' : 'gray'}
                   isLoading={state === 'submitting'}
                   w="100%"
                   type={state === 'success' ? 'button' : 'Enviar'}>

@@ -9,8 +9,10 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react'
 import { IoIosColorPalette } from "react-icons/io";
-import { MdMuseum } from 'react-icons/md'
+import { LuMusic4 } from "react-icons/lu";
 import {FaBroom, FaTheaterMasks} from 'react-icons/fa'
+import { FaBookOpen } from "react-icons/fa6";
+import { GiLargeDress } from "react-icons/gi";
 
 const Card = ({ heading, description, icon }) => {
   return (
@@ -29,7 +31,7 @@ const Card = ({ heading, description, icon }) => {
           justify={'center'}
           color={'white'}
           rounded={'full'}
-          bg={useColorModeValue('yellow.500', 'yellow.700')}>
+          bg={useColorModeValue('yellow')}>
           {icon}
         </Flex>
         <Box mt={2} textAlign={"center"}>
@@ -52,7 +54,7 @@ export default function Features() {
         </Heading>
       </Stack>
 
-      <Container maxW={'7xl'} mt={12}>
+      <Container maxW={'5xl'} mt={12}>
         <Flex flexWrap="wrap" gridGap={6} justify="center">
           <Card
             heading={'ARTBO'}
@@ -60,19 +62,29 @@ export default function Features() {
             description={'Estamos presentes en la feria de arte de Bogotá'}
           />
           <Card
-            heading={'Museos'}
-            icon={<Icon as={MdMuseum} w={10} h={10} />}
-            description={'Te contamos toda la agenda de los museos.'}
+            heading={'Arte'}
+            icon={<Icon as={FaBroom} w={10} h={10} />}
+            description={'Te contamos toda la agenda de las galerias de arte.'}
           />
           <Card
-            heading={'Galerias'}
-            icon={<Icon as={FaBroom} w={10} h={10} />}
-            description={'Conoce todo el circuito de galerias y sus programaciones'}
+            heading={'Música'}
+            icon={<Icon as={LuMusic4} w={10} h={10} />}
+            description={'Conoce todo el circuito de eventos musicales y sus programaciones'}
+          />
+          <Card
+            heading={'Literatura'}
+            icon={<Icon as={FaBookOpen} w={10} h={10} />}
+            description={'Conoce la oferta de literatura en la ciudad'}
           />
           <Card
             heading={'Teatros'}
             icon={<Icon as={FaTheaterMasks} w={10} h={10} />}
-            description={'Entérate de todos los programas de los teatros de la ciudad'}
+            description={'Entérate de todos los programas de los teatros de Bogotá'}
+          />
+          <Card
+            heading={'Moda'}
+            icon={<Icon as={GiLargeDress} w={10} h={10} />}
+            description={'Explora los eventos de moda'}
           />
         </Flex>
       </Container>
